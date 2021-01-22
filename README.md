@@ -1,8 +1,12 @@
-# coinmaster
+# Coin Master
+## Cryptocurrency Tracking App using Angular 11
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4
 
-#[Demo](https://obtainable-lawyer.surge.sh/).
+[Deployed Demo](https://obtainable-lawyer.surge.sh/)
+Note: Due to CORS issues the above URL Does not contain the recent data.
 
+## References
 For styling refer [Link](https://www.creative-tim.com/product/paper-kit-2)
 
 ## Development server
