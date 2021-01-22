@@ -9,20 +9,25 @@ import { map } from 'rxjs/operators';
 })
 export class ConfigService {
 
-  private coinApi = "https://netfour.apphb.com/api/coin/";
-  private currencyApi = "https://free.currconv.com/api/v7/currencies?apiKey=634535f436833039cfeb";
-
   constructor(private http: HttpClient) { }
 
+  getApiUrls() {
+    return this.http.get<any>('assets/config.json').toPromise();;
+  }
+
   getCoinList (): Observable<any[]> {
-    return this.http.get<any>(this.coinApi).pipe(map(response => response.data));
+    const coinApi = sessionStorage.getItem('coinApi');
+    return this.http.get<any>(coinApi).pipe(map(response => response.data));
   }
 
   getCurrency (): Observable<any> {
-    return this.http.get<any>(this.currencyApi);
+    const currencyApi = sessionStorage.getItem('currencyApi');
+    return this.http.get<any>(currencyApi);
   }
 
   getNewCurrencyData(fromCurrency, toCurrency):  Observable<any> {
-    return this.http.get<any>("https://free.currconv.com/api/v7/convert?q="+fromCurrency+"_"+toCurrency+"&compact=ultra&apiKey=634535f436833039cfeb");
+    const newCurrencyDataPrefix = sessionStorage.getItem('newCurrencyDataPrefix');
+    const newCurrencyDataSuffix = sessionStorage.getItem('newCurrencyDataSuffix');
+    return this.http.get<any>(newCurrencyDataPrefix+fromCurrency+"_"+toCurrency+newCurrencyDataSuffix);
   }
 }

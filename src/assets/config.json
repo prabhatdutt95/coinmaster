@@ -1,0 +1,9 @@
+{
+    
+    "coinApi": "https://netfour.apphb.com/api/coin/",
+    "currencyApi": "https://free.currconv.com/api/v7/currencies?apiKey=634535f436833039cfeb",
+    "newCurrencyData": {
+        "prefix": "https://free.currconv.com/api/v7/convert?q=",
+        "suffix": "&compact=ultra&apiKey=634535f436833039cfeb"
+    }
+}
