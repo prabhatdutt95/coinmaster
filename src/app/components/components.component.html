@@ -27,7 +27,8 @@
                         </div>
                         <a class="dropdown-item" 
                         (click)="changeCurrency(currency[1])" 
-                        *ngFor="let currency of currencyList | filter: searchedCurrency">
+                        *ngFor="let currency of currencyList | filter: searchedCurrency"
+                        [title]="currency[1].currencyName">
                         {{currency[1].currencyName}}
                         </a>
                     </div>

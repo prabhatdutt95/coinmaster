@@ -40,6 +40,9 @@
             width: 100%;
             display: block;
             background-color: white;
+            max-width: 50vw;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
             &:hover{
                 color: white;
                 background-color: #66615b;
