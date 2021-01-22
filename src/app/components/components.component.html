@@ -1,0 +1,134 @@
+<div class="main">
+    <div class="container py-5" *ngIf="currencyList.length > 0; else placeholder">
+        <div class="row pb-3">
+            <div class="col-6 offset-lg-3">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="selectedCrypto" name="search" placeholder="Search Currency ">
+                    </div>
+                </form>
+            </div>
+            <div class="col-6 d-lg-none d-block text-right">
+                <a [routerLink]="['/crypto']">
+                    <h3 class="mt-0">
+                        Crypto Converter
+                        <i class="fa fa-exchange"></i>
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col-6">
+                <div ngbDropdown class="d-inline-block dropdown">
+                    <a class="btn btn-primary" id="currencyChange" ngbDropdownToggle>Change Currency</a>
+                    <div ngbDropdownMenu aria-labelledby="currencyChange" class="dropdown-primary">
+                        <a class="dropdown-item" 
+                        (click)="changeCurrency(currency[1])" 
+                        *ngFor="let currency of currencyList ">
+                        {{currency[1].currencyName}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-right">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-default" (click)="showPrice('1h')" 
+                    [class.active]="selectedPrice == 'percent_change_1h'">1h</button>
+                    <button type="button" class="btn btn-outline-default" (click)="showPrice('24h')"
+                    [class.active]="selectedPrice == 'percent_change_24h'">24h</button>
+                    <button type="button" class="btn btn-outline-default" (click)="showPrice('7d')"
+                    [class.active]="selectedPrice == 'percent_change_7d'">7d</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ng-container *ngFor="let coin of coinList | filter: selectedCrypto">
+                <div class="col-md-4 col-12 col-lg-3">
+                    <div class="card bg-dark-custom text-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 col-2">
+                                    <img [attr.src]="coin.id_icon" class="image-fluid d-inline icon-image"> 
+                                </div>
+                                <div class="col-md-9 col-10 mt-1">
+                                    <span class="font-weight-bold">{{coin.name}} ({{coin.symbol}})</span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-5">
+                                    Price
+                                </div>
+                                <div class="col-7">
+                                    <span class="float-right">{{selectedCurrencySymbol}} {{ coin.quote.USD.price * multiplyingFactor | numberSuffix: 2 }}</span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <span>Volume</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="float-right">{{coin.quote.USD.volume_24h | numberSuffix: 2}}</span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12 pl-3 mt-2">
+                                    <div class="text-center p-1 font-weigh-bold 
+                                    {{coin.quote.USD[selectedPrice] > 0 ? 'bg-success' :'bg-danger'}}">
+                                        <span class="float-none">
+                                            {{coin.quote.USD[selectedPrice] > 0 ? '+' :''}} {{coin.quote.USD[selectedPrice] | number}} %
+                                            ({{selectedInterval}})
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row" [title]="coin.name">
+                                <div class="col-1 pr-0 pl-1">
+                                    <img [attr.src]="coin.id_icon" class="image-fluid d-inline icon-image"> 
+                                </div>
+                                <div class="col-7 mt-2">
+                                    <div class="pl-2">{{coin.symbol}}</div>
+                                </div>
+                                <div class="col-4 mt-2 text-right">
+                                    <div>Vol</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mt-2">
+                                    <div class="text-center p-1 font-weigh-bold 
+                                    {{coin.quote.USD[selectedPrice] > 0 ? 'bg-success' :'bg-danger'}}">
+                                        {{selectedCurrencySymbol}} {{coin.quote.USD[selectedPrice] * multiplyingFactor | number}}
+                                    </div>
+                                </div>
+                                <div class="col-6 mt-2 text-right">
+                                    <div>{{coin.quote.USD.volume_24h | numberSuffix: 2}}</div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<ng-template #placeholder>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3 col-lg-4" *ngFor="let i of [0,1,2,3,4,5,6,7]">
+                <div class="ph-item">
+                    <div class="ph-col-2">
+                      <div class="ph-avatar"></div>
+                    </div>
+                    <div>
+                      <div class="ph-row">
+                        <div class="ph-col-12"></div>
+                        <div class="ph-col-2"></div>
+                        <div class="ph-col-10 empty"></div>
+                        <div class="ph-col-8 big"></div>
+                        <div class="ph-col-4 big empty"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
