@@ -37,9 +37,6 @@ export class ComponentsComponent implements OnInit {
         this.selectedPrice = 'percent_change_' + price;
         this.selectedInterval = price + ' change';
     }
-    filter() {
-        console.log(this.selectedCrypto);
-    }
     changeCurrency(selectedCurrency) {
         this.configService.getNewCurrencyData(this.prevSelectedCurrency, selectedCurrency.id).subscribe((response) => {
             console.log(response);
