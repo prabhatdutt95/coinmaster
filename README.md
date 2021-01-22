@@ -4,7 +4,10 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4
 
 [Deployed Demo](https://obtainable-lawyer.surge.sh/)
+
 Note: Due to CORS issues the above URL Does not contain the recent data.
+
+[Snapshot](https://github.com/prabhatdutt95/coinmaster/blob/master/laptop_view.JPG?raw=true)
 
 ## References
 For styling refer [Link](https://www.creative-tim.com/product/paper-kit-2)
