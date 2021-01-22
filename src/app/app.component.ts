@@ -9,6 +9,7 @@ import { ConfigService } from './config.service';
 })
 export class AppComponent implements OnInit {
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
+    apiUrlsLoaded = false;
 
     constructor( private renderer : Renderer2,  private element : ElementRef, public location: Location, private configService: ConfigService) {}
     ngOnInit() {
@@ -25,11 +26,11 @@ export class AppComponent implements OnInit {
             }
         });
         this.configService.getApiUrls().then((res) => {
-            console.log(res)
             sessionStorage.setItem('coinApi', res.coinApi);
             sessionStorage.setItem('currencyApi', res.currencyApi);
             sessionStorage.setItem('newCurrencyDataPrefix', res.newCurrencyData.prefix);
             sessionStorage.setItem('newCurrencyDataSuffix', res.newCurrencyData.suffix);
+            this.apiUrlsLoaded = true;
         })
     }
 }

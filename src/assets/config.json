@@ -1,6 +1,6 @@
 {
     
-    "coinApi": "https://netfour.apphb.com/api/coin/",
+    "coinApi": "https://run.mocky.io/v3/222edac6-8a36-4c33-9159-1df5280091e8",
     "currencyApi": "https://free.currconv.com/api/v7/currencies?apiKey=634535f436833039cfeb",
     "newCurrencyData": {
         "prefix": "https://free.currconv.com/api/v7/convert?q=",
