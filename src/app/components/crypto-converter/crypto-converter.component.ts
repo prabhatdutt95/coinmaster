@@ -11,6 +11,8 @@ export class CryptoConverterComponent implements OnInit {
   coinList = []
   fromCurrency;
   toCurrency;
+  searchedCurrencyTo;
+  searchedCurrencyFrom;
   amountSelected = 1;
   exchangeAmt = this.amountSelected;
   constructor(private configService: ConfigService) { }

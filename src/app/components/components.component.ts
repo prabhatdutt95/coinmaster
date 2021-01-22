@@ -10,6 +10,7 @@ export class ComponentsComponent implements OnInit {
     coinList = [];
     selectedPrice = 'percent_change_1h';
     selectedCrypto;
+    searchedCurrency;
     prevSelectedCurrency = 'USD';
     currencyList: any = [];
     multiplyingFactor = 1;

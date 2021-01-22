@@ -8,8 +8,11 @@
                 <div ngbDropdown class="d-inline-block dropdown pl-lg-5">
                     <a class="btn btn-primary" id="fromCurrency" ngbDropdownToggle>{{fromCurrency?.name}} ({{fromCurrency?.symbol}})</a>
                     <div ngbDropdownMenu aria-labelledby="fromCurrency" class="dropdown-primary">
+                        <div>
+                            <input type="text" class="form-control" [(ngModel)]="searchedCurrencyFrom">
+                        </div>
                         <a class="dropdown-item" (click)="changeFromCurrency(currency)"
-                        *ngFor="let currency of coinList">
+                        *ngFor="let currency of coinList | filter: searchedCurrencyFrom">
                         {{currency.name}}
                         </a>
                     </div>
@@ -19,8 +22,11 @@
                 <div ngbDropdown class="d-inline-block dropdown pl-lg-5">
                     <a class="btn btn-primary" id="toCurrency" ngbDropdownToggle>{{toCurrency?.name}} ({{toCurrency?.symbol}})</a>
                     <div ngbDropdownMenu aria-labelledby="toCurrency" class="dropdown-primary">
+                        <div>
+                            <input type="text" class="form-control" [(ngModel)]="searchedCurrencyTo">
+                        </div>
                         <a class="dropdown-item" (click)="changeToCurrency(currency)"
-                        *ngFor="let currency of coinList">
+                        *ngFor="let currency of coinList | filter: searchedCurrencyTo">
                         {{currency.name}}
                         </a>
                     </div>

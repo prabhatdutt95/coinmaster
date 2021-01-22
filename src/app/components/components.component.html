@@ -1,36 +1,39 @@
 <div class="main">
     <div class="container py-5" *ngIf="currencyList.length > 0; else placeholder">
         <div class="row pb-3">
-            <div class="col-6 offset-lg-3">
+            <div class="col-12 offset-lg-3 col-sm-6 text-center text-sm-left mb-2">
                 <form>
                     <div class="form-group">
                         <input type="text" class="form-control" [(ngModel)]="selectedCrypto" name="search" placeholder="Search Currency ">
                     </div>
                 </form>
             </div>
-            <div class="col-6 d-lg-none d-block text-right">
-                <a [routerLink]="['/crypto']">
-                    <h3 class="mt-0">
+            <div class="col-12 d-lg-none d-block col-sm-6 text-center text-sm-right mb-2">
+                <h3 class="mt-0">
+                    <a [routerLink]="['/crypto']">
                         Crypto Converter
                         <i class="fa fa-exchange"></i>
-                    </h3>
-                </a>
+                    </a>
+                </h3>
             </div>
         </div>
         <div class="row pb-3">
-            <div class="col-6">
+            <div class="col-12 col-sm-6 text-center text-sm-left mb-2">
                 <div ngbDropdown class="d-inline-block dropdown">
                     <a class="btn btn-primary" id="currencyChange" ngbDropdownToggle>Change Currency</a>
                     <div ngbDropdownMenu aria-labelledby="currencyChange" class="dropdown-primary">
+                        <div>
+                            <input type="text" class="form-control" [(ngModel)]="searchedCurrency">
+                        </div>
                         <a class="dropdown-item" 
                         (click)="changeCurrency(currency[1])" 
-                        *ngFor="let currency of currencyList ">
+                        *ngFor="let currency of currencyList | filter: searchedCurrency">
                         {{currency[1].currencyName}}
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-12 col-sm-6 text-center text-sm-right mb-2">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-default" (click)="showPrice('1h')" 
                     [class.active]="selectedPrice == 'percent_change_1h'">1h</button>
